@@ -14,7 +14,7 @@ public class Utilisateur {
 	private String numPortable;
 	private String numFix;
 	private String date;
-	private int dispo;
+	private String dispo;
 
 	public Utilisateur(String nom, String prenom, String email, String password) {
 		this.nom = nom;
@@ -27,7 +27,7 @@ public class Utilisateur {
 		numPortable = "";
 		numFix = "";
 		setDate(null);
-		dispo = 0;
+		setDispo(0);
 	}
 
 	public String getNom() {
@@ -108,6 +108,14 @@ public class Utilisateur {
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+
+	public String getDispo() {
+		return dispo;
+	}
+
+	public void setDispo(String dispo) {
+		this.dispo = dispo;
 	}
 
 

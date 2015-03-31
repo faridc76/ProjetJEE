@@ -82,4 +82,20 @@ public class UtilisateurDB {
 		ps.close();
 		users.put(us.getEmail(), us);
 	}
+
+	public static void UpdateUtilisateur(Utilisateur us) {
+		con = DriverManager.getConnection(url, login, pass);
+		
+		PreparedStatement ps =  con.prepareStatement(
+				  "INSERT INTO utilisateur (usr_email, usr_nom, usr_prenom, usr_password) "
+				+ "VALUES (?, ?, ?, ?)");
+		ps.setString(1, us.getNom());
+		ps.setString(2, us.getPrenom());
+		ps.setString(3, us.getEmail());
+		ps.setString(4, us.getPassword());
+		ps.execute();
+		ps.close();
+		users.put(us.getEmail(), us);
+		
+	}
 }
