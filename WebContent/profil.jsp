@@ -29,18 +29,17 @@
 			</form>
 		</section>
 
-		<section class="col-lg-1"></section>
-
-		<section class="col-lg-2">
+		<section class="col-lg-offset-1 col-lg-2">
 			<div class="row">
 				<p></p>
-				<a href=recherche.jsp><button type="button" class="btn btn-block btn-primary">Retour
-					à la recherche</button></a>
+				<a href=recherche.jsp><button type="button"
+						class="btn btn-block btn-primary">Retour à la recherche</button></a>
 				<p></p>
-				<a href=modif-compte.jsp><button type="button" class="btn btn-block btn-warning">
-					<span class="glyphicon glyphicon-pencil"></span> Modifier mon
-					profil
-				</button></a>
+				<a href=modif-compte.jsp><button type="button"
+						class="btn btn-block btn-warning">
+						<span class="glyphicon glyphicon-pencil"></span> Modifier mon
+						profil
+					</button></a>
 				<p></p>
 				<button type="button" href="#suppressionCompte"
 					class="btn btn-block btn-danger" data-toggle="modal">
@@ -62,6 +61,40 @@
 									data-dismiss="modal">
 									<span class="glyphicon glyphicon-remove"></span> Confirmer la
 									suppression du compte
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<p></p>
+				<button type="button" class="btn btn-block btn-primary"
+					href="#envoyerMessage" data-toggle="modal">Envoyer un
+					message</button>
+				<div class="modal fade" id="envoyerMessage">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">X</button>
+								<h4 class="modal-title text-left">Envoyer un message</h4>
+							</div>
+							<div class="modal-body">
+								<div class="form-group text-left">
+									<label for="inputTitreMessage" class="control-label">Titre du message</label> <input type="text" class="form-control"
+										id="titreMessage" placeholder="Titre du message"
+										name="titreMessage" required>
+								</div>
+								<div class="form-group text-left">
+									<label for="inputMessage" class="control-label">Message</label>
+									<textarea rows="4" class="form-control"
+										id="inputMessage"
+										placeholder="Message"
+										name="inputMessage" required></textarea>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-success"
+									data-dismiss="modal">
+									<span class="glyphicon glyphicon-envelope"></span> Envoyer un message
 								</button>
 							</div>
 						</div>
@@ -168,8 +201,8 @@
 										<div class="form-group text-left">
 											<label for="inputNamePassion" class="control-label">Nom
 												de la passion</label> <input type="text" class="form-control"
-												id="nomPassion" value="Nom de la passion"
-												name="nomPassion" required>
+												id="nomPassion" value="Nom de la passion" name="nomPassion"
+												required>
 										</div>
 										<div class="form-group text-left">
 											<label for="inputNiveauPassion" class="control-label">Niveau
