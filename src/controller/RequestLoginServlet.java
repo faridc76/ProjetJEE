@@ -15,7 +15,7 @@ import model.Utilisateur;
 import model.db.UtilisateurDB;
 import model.db.exception.DatabaseAccessError;
 
-@WebServlet("/RequestLoginServlet")
+@WebServlet("/RequestLoginServlet") // cacaprout
 public class RequestLoginServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 3311297485258766639L;
