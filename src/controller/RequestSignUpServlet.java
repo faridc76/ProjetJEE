@@ -24,7 +24,8 @@ public class RequestSignUpServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-
+		//Si on arrive la c'est que le la mot de passe et la confirmation de mot de passe sont identique
+		//que le mail est bien de la forme aaaa@bbbb.com
 		String nom = req.getParameter("nom");
 		String prenom = req.getParameter("prenom");
 		String email = req.getParameter("email");
