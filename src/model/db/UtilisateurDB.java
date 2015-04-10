@@ -83,7 +83,7 @@ public class UtilisateurDB {
 		users.put(us.getEmail(), us);
 	}
 
-	public static void UpdateUtilisateur(Utilisateur us) {
+	public static void UpdateUtilisateur(Utilisateur us) throws SQLException {
 		con = DriverManager.getConnection(url, login, pass);
 		
 		PreparedStatement ps =  con.prepareStatement(
