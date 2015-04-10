@@ -63,6 +63,7 @@
 					} else {
 				%>
 				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#"><span class="glyphicon glyphicon-envelope" style="color:blue"></span></a> </li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-expanded="false"><%=session.getAttribute("name")%><span
 							class="caret"></span></a>
@@ -70,7 +71,7 @@
 							<li><a href="/Projet/InformationCompteServlet">Informations
 									sur le compte</a></li>
 							<li><a href="/Projet/RequestLogoutServlet">Déconnexion</a></li>
-						</ul></li>
+						</ul></li>						
 				</ul>
 				<%
 					}
