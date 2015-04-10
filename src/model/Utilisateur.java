@@ -27,7 +27,7 @@ public class Utilisateur {
 		numPortable = "";
 		numFix = "";
 		setDate(null);
-		setDispo(0);
+		//setDispo(0);
 	}
 
 	public String getNom() {
