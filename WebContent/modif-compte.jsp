@@ -8,7 +8,7 @@
 </jsp:include>
 
 <%
-	if (session.getAttribute("name") != null) {
+	if (session.getAttribute("name") == null) {
 		RequestDispatcher rd = request
 				.getRequestDispatcher("index.jsp");
 		rd.forward(request, response);

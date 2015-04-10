@@ -8,7 +8,7 @@
 </jsp:include>
 
 <%
-	if (session.getAttribute("name") != null) {
+	if (session.getAttribute("name") == null) {
 		RequestDispatcher rd = request
 				.getRequestDispatcher("index.jsp");
 		rd.forward(request, response);
@@ -92,7 +92,7 @@
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-success"
+								<button type="button" class="btn btn-primary"
 									data-dismiss="modal">
 									<span class="glyphicon glyphicon-envelope"></span> Envoyer un message
 								</button>
