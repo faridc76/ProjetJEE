@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +16,7 @@ import model.Utilisateur;
 import model.db.UtilisateurDB;
 import model.db.exception.DatabaseAccessError;
 
-@WebServlet("/RequestLoginServlet")
+@WebServlet("/RequestSignUpServlet")
 public class RequestSignUpServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 3311297485258766639L;
@@ -29,7 +30,12 @@ public class RequestSignUpServlet extends HttpServlet {
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
 		Utilisateur us = new Utilisateur(nom, prenom, email, password);
-		UtilisateurDB.AddUtilisateur(us);
+		try {
+			UtilisateurDB.AddUtilisateur(us);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
