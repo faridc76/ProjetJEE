@@ -22,7 +22,7 @@
 			<h3>Boite de réception</h3>
 		</div>
 		<div class="col-lg-offset-1 col-lg-2">
-			<a href=recherche.jsp><button class="btn">Retour à la recherche</button></a>
+			<a href=recherche.jsp><button class="btn btn-default">Retour à la recherche</button></a>
 			<p></p>
 			<button type="button" class="btn btn-primary"
 			href="#envoyerMessage" data-toggle="modal">Envoyer un
@@ -65,9 +65,7 @@
 		</div>
 		<div class="col-lg-12">
 			<table class="table table-bordered table-striped text-left">
-				<caption>
-					<h4>Résultats</h4>
-				</caption>
+				<caption></caption>
 				<thead>
 					<tr>
 						<th>De</th>
