@@ -1,0 +1,17 @@
+{
+	"sProcessing": "En cours de traitement...",
+	"sLengthMenu": "_MENU_ R\u00e9sultats \u00e0 afficher",
+	"sZeroRecords": "Aucun r\u00e9sultat \u00e0 afficher.",
+	"sInfo": "_START_ \u00e0 _END_ sur _TOTAL_ \u00e9l\u00e9ments",
+	"sInfoEmpty": "0 \u00e0 0 sur 0 \u00e9l\u00e9ment",
+	"sInfoFiltered": "(_MAX_ \u00e9l\u00e9ments filtr\u00e9es)",
+	"sInfoPostFix": "",
+	"sSearch": "Recherche",
+	"sUrl": "",
+	"oPaginate": {
+		"sFirst":    "Premier",
+		"sPrevious": "Pr\u00e9c\u00e9dent",
+		"sNext":     "Suivant",
+		"sLast":     "Dernier "
+	}
+}

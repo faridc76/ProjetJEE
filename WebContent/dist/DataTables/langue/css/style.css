@@ -1,0 +1,87 @@
+      html, body, #map {
+      	margin: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .customEditingToolbar {
+      	float: right;
+				right: 10px;
+				height: 30px; 
+	  	}
+	  	.customEditingToolbar div {
+				float: right;
+				margin: 5px;
+				width: 24px;
+				height: 24px;
+	  	}
+	  		/* Modifié pour changer la "main" */
+	  	.olControlNavigationItemActive { 
+      	background-image: url(../openlayers/theme/default/img/editing_tool_bar.png);
+		 		background-repeat: no-repeat;
+		 		background-position: -103px -23px; 
+	  	}
+	  	.olControlNavigationItemInactive { 
+				background-image: url(../openlayers/theme/default/img/editing_tool_bar.png);
+				background-repeat: no-repeat;
+				background-position: -103px -0px;
+	  	}
+	  	/* Modifié pour creer les polygones */
+	  	.olControlDrawFeaturePointItemActive { 
+				background-image: url(../openlayers/theme/default/img/draw_polygon_on.png);
+				background-repeat: no-repeat;
+				background-position: 0px px;                                                             
+	  	}
+	  	.olControlDrawFeaturePointItemInactive { 
+	 			background-image: url(../openlayers/theme/default/img/draw_polygon_off.png);
+				background-repeat: no-repeat;
+				background-position: 0px 1px;
+	  	}
+	  	/* Modifié pour modifier les polygones */
+	  	.olControlModifyFeatureItemActive { 
+	  		background-image: url(../openlayers/theme/default/img/move_feature_on.png);
+				background-repeat: no-repeat;
+				background-position: 0px 1px;
+      }
+      .olControlModifyFeatureItemInactive { 
+	  		background-image: url(../openlayers/theme/default/img/move_feature_off.png);
+				background-repeat: no-repeat;
+				background-position: 0px 1px;
+	  	}
+	  	/* Modifié pour supprimer les polygones */
+	  	.olControlDeleteFeatureItemActive { 
+	  		background-image: url(../openlayers/theme/default/img/remove_point_on.png);
+				background-repeat: no-repeat;
+	  	}
+	  	.olControlDeleteFeatureItemInactive { 
+				background-image: url(../openlayers/theme/default/img/remove_point_off.png);
+				background-repeat: no-repeat;
+	  	}
+	  	#aide{
+		 		position: absolute; 
+				right: 110px;
+				top: 1px;
+				margin: 5px;
+				width: 24px;
+				height: 24px; 
+				z-index: 10000; 
+	  	}
+	  	/* Barre d'information pour la transmission des requêtes au serveur  */
+	  	#etatRequete{
+				display: none;
+				position: absolute; 
+				left: 10px; 
+				bottom: 1px; 
+				z-index: 10000; 
+				width: 400px; 
+				height: 20px;
+				text-align: center;
+	  	}
+	  	#inputFiltre{
+	  		position: absolute; 
+				left: 50px; 
+				top: 10px; 
+				z-index: 1000; 
+				width: 50px; 
+				height: 15px;
+				text-align: left;
+	  	}		
