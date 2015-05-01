@@ -8,13 +8,14 @@ public class Utilisateur {
 	private String email;
 	private String password;
 	
+	private int id;
 	private String titre;
 	private String lieuDeTravail;
 	private String poste;
 	private String numPortable;
 	private String numFix;
 	private String date;
-	private String dispo;
+	private int dispo;
 
 	public Utilisateur(String nom, String prenom, String email, String password) {
 		this.nom = nom;
@@ -26,8 +27,9 @@ public class Utilisateur {
 		poste = "";
 		numPortable = "";
 		numFix = "";
-		setDate(null);
-		//setDispo(0);
+		setDate("");
+		setDispo(0);
+		setId(0);
 	}
 
 	public String getNom() {
@@ -110,12 +112,32 @@ public class Utilisateur {
 		this.date = date;
 	}
 
-	public String getDispo() {
+	public int getDispo() {
 		return dispo;
 	}
 
-	public void setDispo(String dispo) {
+	public void setDispo(int dispo) {
 		this.dispo = dispo;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String disponibilite() {
+		switch (getDispo()) {
+		case 0:
+            return "Disponible";
+        case 1:
+            return "Peu disponible";
+        case 2:
+            return "Indisponible";
+		}
+		return "Non indiqué";
 	}
 
 

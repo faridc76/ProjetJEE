@@ -1,26 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>ProjetJEE</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="/Projet/dist/bootstrap/3.3.4/css/bootstrap.min.css">
 <link href="/Projet/dist/bootstrap-switch.css" rel="stylesheet">
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="/Projet/dist/jqueryui/1.11.4/jquery-ui.css">
 	
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="/Projet/dist/jquery/2.1.3/jquery.min.js"></script>
 <!-- JS - bootstrap.min.js contain all plugins in a single file. Include only one. -->
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+	src="/Projet/dist/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/Projet/dist/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script src="/Projet/dist/validator.js"></script>
 <script src="/Projet/dist/bootstrap-formhelpers-phone.js"></script>
 <script src="/Projet/dist/bootstrap-switch.js"></script>
-<script src="/Projet/dist/bootstrap-dormhelpers-datepicker.js"></script>
+<script src="/Projet/dist/bootstrap-formhelpers-datepicker.js"></script>
 
 </head>
 <body>
@@ -53,7 +51,7 @@
 					if (session.getAttribute("name") == null) {
 				%>
 				<form class="navbar-form form-inline pull-right"
-					action="/Projet/RequestLoginServlet" method="post">
+					action="/Projet/LoginServlet" method="post">
 					<input type="text" class="form-control" placeholder="E-mail"
 						name="login"> <input type="password" class="form-control"
 						placeholder="Mot de passe" name="password">
@@ -63,14 +61,14 @@
 					} else {
 				%>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href=messageBox.jsp><span class="glyphicon glyphicon-envelope" style="color:blue"></span></a> </li>
+					<li><a href=messageBox.jsp><span class="glyphicon glyphicon-envelope" style="color:grey"></span></a> </li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-expanded="false"><%=session.getAttribute("name")%><span
 							class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="/Projet/InformationCompteServlet">Informations
+							<li><a href="/Projet/ShowProfil">Informations
 									sur le compte</a></li>
-							<li><a href="/Projet/RequestLogoutServlet">Déconnexion</a></li>
+							<li><a href="/Projet/LogoutServlet">Déconnexion</a></li>
 						</ul></li>						
 				</ul>
 				<%
@@ -79,8 +77,21 @@
 			</div>
 		</div>
 	</nav>
-</body>
 
 <div class="container">
-
-		<!-- container, body and HTML tags are still opened -->
+<!-- Alerts -->
+    <% if(((String)session.getAttribute("error")) != null) { %>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%=((String)session.getAttribute("error")) %>
+    </div>
+    <% } %>
+     <!-- Compte créé -->
+    <% if(((String)session.getAttribute("compte")) != null) { %>
+    <div class="alert alert-success alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%=((String)session.getAttribute("compte")) %>
+    </div>
+    <% } %>
+    <% session.removeAttribute("error"); %>
+    <% session.removeAttribute("compte"); %>

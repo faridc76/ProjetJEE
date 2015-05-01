@@ -4,14 +4,16 @@ public class Personalite {
 	private String nom;
 	private int niveau;
 	private String description;
+	private String type;
+	private Utilisateur user;
 	private int id;
-	private int type;
 	
-	public Personalite(String nom, int niveau, int type) {
+	public Personalite(String nom, int niveau, String type, String description, Utilisateur user) {
 		this.setNom(nom);
 		this.setNiveau(niveau);
 		this.setType(type);
-		setDescription("");
+		this.description = description;
+		this.setUser(user);
 		setId(0);
 	}
 
@@ -39,6 +41,14 @@ public class Personalite {
 		this.nom = nom;
 	}
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -47,13 +57,15 @@ public class Personalite {
 		this.id = id;
 	}
 
-	public int getType() {
-		return type;
+	public Utilisateur getUser() {
+		return user;
 	}
 
-	public void setType(int type) {
-		this.type = type;
+	public void setUser(Utilisateur user) {
+		this.user = user;
 	}
+
+	
 
 	
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ page import="model.Utilisateur" %>
 <!-- header -->
 <jsp:include page="/utils/header.jsp">
 	<jsp:param name="title" value="GiMi & Co" />
@@ -17,8 +17,7 @@
 <!-- container -->
 <div class="jumbotron text-center">
 
-	<form data-toggle="validator" role="form"
-		action="/Projet/RequestSignUpServlet" method="POST">
+	
 
 		<div class="row">
 			<div class="col-lg-offset-4 col-lg-4">
@@ -26,17 +25,18 @@
 					<strong><em>Modification du compte</em></strong>
 				</h3>
 			</div>
-
+			<form data-toggle="validator" role="form"
+			action="/Projet/SaveUpdate" method="POST">
 			<section class="col-lg-offset-1 col-lg-4">
 				<div class="row">
 					<div class="form-group">
 						<label for="inputTitre" class="control-label">Titre</label> <input
-							type="text" class="form-control" id="titre" value="Ingénieur"
+							type="text" class="form-control" id="titre" value="<%=((Utilisateur)session.getAttribute("user")).getTitre() %>"
 							name="titre" required>
 					</div>
 					<div class="form-group">
 						<label for="inputFirtName" class="control-label">Prénom</label> <input
-							type="text" class="form-control" id="prenom" value="Prénom"
+							type="text" class="form-control" id="prenom" value="<%=((Utilisateur)session.getAttribute("user")).getPrenom() %>"
 							name="prenom" required>
 					</div>
 					<div class="form-group">
@@ -48,7 +48,7 @@
 					</div>
 					<div class="form-group">
 						<label for="inputDateDeNaissance" class="control-label">Date
-							de naissance</label> <input value="08/01/1993" type="text"
+							de naissance</label> <input value="<%=((Utilisateur)session.getAttribute("user")).getDate() %>" type="text"
 							class="form-control" id="datepicker" name="dateDeNaissance"
 							required>
 					</div>
@@ -56,7 +56,7 @@
 						<label for="inputNumeroPortable" class="control-label">Numéro
 							de téléphone portable</label> <input type="text"
 							class="form-control bfh-phone" id="numeroPortable"
-							value="235112233" name="numeroPortable"
+							value="<%=((Utilisateur)session.getAttribute("user")).getNumPortable() %>" name="numeroPortable"
 							data-format="+33 d dd dd dd dd" required>
 					</div>
 				</div>
@@ -68,13 +68,13 @@
 				<div class="row">
 					<div class="form-group">
 						<label for="inputEmail" class="control-label">Email</label> <input
-							type="email" class="form-control" id="email" value="a@b.com"
+							type="email" class="form-control" id="email" value="<%=((Utilisateur)session.getAttribute("user")).getEmail() %>"
 							data-error="Bruh, adresse email invalide !" name="email" required>
 						<div class="help-block with-errors"></div>
 					</div>
 					<div class="form-group">
 						<label for="inputName" class="control-label">Nom</label> <input
-							type="text" class="form-control" id="nom" value="Nom" name="nom"
+							type="text" class="form-control" id="nom" value="<%=((Utilisateur)session.getAttribute("user")).getNom() %>" name="nom"
 							required>
 					</div>
 					<div class="form-group">
@@ -91,15 +91,15 @@
 					<div class="form-group">
 						<label for="inputLieuDeTravail" class="control-label">Lieu
 							de travail</label> <input type="text" class="form-control"
-							id="lieuDeTravail" value="Saint Etienne du Rouvray, France"
+							id="lieuDeTravail" value="<%=((Utilisateur)session.getAttribute("user")).getLieuDeTravail() %>"
 							name="lieuDeTravail" required>
 					</div>
 					<div class="form-group">
-						<label for="inputNumeroPortable" class="control-label">Numéro
+						<label for="inputNumeroFixe" class="control-label">Numéro
 							de téléphone fixe</label> <input type="text"
-							class="form-control bfh-phone" id="numeroPortable"
-							value="644556677" name="numeroPortable"
-							data-format="+33 d dd dd dd dd" required>
+							class="form-control bfh-phone" id="numeroFixe"
+							value="<%=((Utilisateur)session.getAttribute("user")).getNumFix() %>" 
+							name="numeroFixe" data-format="+33 d dd dd dd dd" required>
 					</div>
 				</div>
 			</section>
@@ -114,18 +114,26 @@
 									data-off-color="danger"
 									data-on-text="<span class='glyphicon glyphicon-ok'></span>"
 									data-label-text="Disponible"
+									value="0"
 									data-off-text="<span class='glyphicon glyphicon-remove'></span>"
-									checked>
+									<% if ((Integer)session.getAttribute("checked") == 0) {%>
+										<%="checked" %>
+									<% } %>
+									>
 							</div>
 						</section>
 						<section class="col-lg-4">
 							<div class="make-switch">
 								<input type="radio" name="radio" data-on-color="success"
 									data-off-color="danger"
-									data-on-text="
-									<span class='glyphicon glyphicon-ok'></span>"
+									data-on-text="<span class='glyphicon glyphicon-ok'></span>"
 									data-label-text="Peu disponible"
-									data-off-text="<span class='glyphicon glyphicon-remove'></span>">
+									value="1"
+									data-off-text="<span class='glyphicon glyphicon-remove'></span>"
+									<% if ((Integer)session.getAttribute("checked") == 1) {%>
+										<%="checked" %>
+									<% } %>
+									>
 							</div>
 						</section>
 						<section class="col-lg-4">
@@ -134,7 +142,12 @@
 									data-off-color="danger"
 									data-on-text="<span class='glyphicon glyphicon-ok'></span>"
 									data-label-text="Indisponible"
-									data-off-text="<span class='glyphicon glyphicon-remove'></span>">
+									value="2"
+									data-off-text="<span class='glyphicon glyphicon-remove'></span>"
+									<% if ((Integer)session.getAttribute("checked") == 2) {%>
+										<%="checked" %>
+									<% } %>
+									>
 							</div>
 						</section>
 					</div>
@@ -149,7 +162,7 @@
 					</button>
 				</div>
 			</div>
-
+			</form>
 			</br>
 
 			<div class="col-lg-offset-8 col-lg-4">
@@ -174,13 +187,13 @@
 									<span class="glyphicon glyphicon-remove"></span> Confirmer la
 									suppression du compte
 								</button>
+			
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</form>
 </div>
 
 <%

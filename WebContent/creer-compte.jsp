@@ -8,7 +8,7 @@
 </jsp:include>
 
 <%
-	if (session.getAttribute("name") != null) {
+	if (session.getAttribute("user") != null) {
 		RequestDispatcher rd = request
 				.getRequestDispatcher("index.jsp");
 		rd.forward(request, response);
@@ -24,7 +24,7 @@
 			</h3>
 
 			<form data-toggle="validator" role="form"
-				action="/Projet/RequestSignUpServlet" method="POST">
+				action="/Projet/SignUpServlet" method="POST">
 				<div class="form-group">
 					<label for="inputName" class="control-label">Nom</label> <input
 						type="text" class="form-control" id="nom"
