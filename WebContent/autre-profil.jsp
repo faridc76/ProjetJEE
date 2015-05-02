@@ -48,8 +48,10 @@
 								<h4 class="modal-title text-left">Envoyer un message</h4>
 							</div>
 							<div class="modal-body">
+							<form data-toggle="validator" role="form" action="/Projet/SendMessage" method="POST">
 								<div class="form-group text-left">
-									<label for="inputTitreMessage" class="control-label">Titre du message</label> <input type="text" class="form-control"
+									<label for="inputTitreMessage" class="control-label">Titre du message</label> 
+									<input type="text" class="form-control"
 										id="titreMessage" placeholder="Titre du message"
 										name="titreMessage" required>
 								</div>
@@ -60,13 +62,14 @@
 										placeholder="Message"
 										name="inputMessage" required></textarea>
 								</div>
+								<div class="form-group text-right">
+									<button type="submit" class="btn btn-primary">
+										<span class="glyphicon glyphicon-envelope"></span> Envoyer un message
+									</button>
+								</div>
+							</form>
 							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-primary"
-									data-dismiss="modal">
-									<span class="glyphicon glyphicon-envelope"></span> Envoyer un message
-								</button>
-							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -83,6 +86,7 @@
 						<th>Nom</th>
 						<th>Type</th>
 						<th>Niveau</th>
+						<th>Description</th>
 					</tr>
 				</thead>
 				<tbody>

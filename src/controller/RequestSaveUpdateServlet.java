@@ -1,7 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.util.GregorianCalendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,9 +50,11 @@ public class RequestSaveUpdateServlet extends HttpServlet {
 			us.setNumFix(req.getParameter("numeroFixe"));
 			us.setNumPortable(req.getParameter("numeroPortable"));
 			us.setDispo(Integer.parseInt(req.getParameter("radio")));
-			
-			
-			us.setDate("1980-01-01");
+
+			//On decoupe la date qui est mm/jj/aaaa en {m, j, a}
+			String date[] = req.getParameter("dateDeNaissance").split("/");
+			//On l'ecrit ensuite dans la forme aaaa-mm-jj pour que mysql comprenne
+			us.setDate(date[2] + "-" + date[0] + "-" + date [1]);
 			UtilisateurDB.UpdateUtilisateur(us);
 			
 			//On modifie le nom qui s'affiche

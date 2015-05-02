@@ -61,7 +61,7 @@
 					} else {
 				%>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href=messageBox.jsp><span class="glyphicon glyphicon-envelope" style="color:grey"></span></a> </li>
+					<li><a href=Message><span class="glyphicon glyphicon-envelope" style="<%=session.getAttribute("newMessage")%>"></span></a> </li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-expanded="false"><%=session.getAttribute("name")%><span
 							class="caret"></span></a>

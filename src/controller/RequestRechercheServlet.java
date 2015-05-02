@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Personalite;
 import model.Utilisateur;
@@ -32,22 +33,26 @@ public class RequestRechercheServlet extends HttpServlet {
 		Collection<Personalite> personalites = PersonaliteDB.getPersonalites();
 		//Un compteur pour savoir quand mettre une virgule car la forme doit etre {[ [], []... ]}
 		int i = 0;
+		HttpSession session = req.getSession(true);
+		Utilisateur user = (Utilisateur) session.getAttribute("user");
 		for (Personalite perso : personalites) {
-			Utilisateur us = perso.getUser();
-			if (i > 0) {
-				json = json + ",";
+			if (perso.getUser().getId() != user.getId()) {
+				Utilisateur us = perso.getUser();
+				if (i > 0) {
+					json = json + ",";
+				}
+				json = json + "[";
+				json = json + "\"<a href='/Projet/ShowOtherProfil?id=" + perso.getId() + "'>" + us.getPrenom() + " " + us.getNom() + "</a>\",";
+				json = json + "\"" + us.getTitre() + "\",";
+				json = json + "\"" + us.getEmail() + "\",";
+				json = json + "\"" + perso.getType() + "\",";
+				json = json + "\"" + perso.getNom() + "\",";
+				json = json + "\"" + perso.getNiveau() + "\",";
+				json = json + "\"" + us.disponibilite() + "\",";
+				json = json + "\"" + us.getLieuDeTravail() + "\"";
+				json = json + "]";
+				i++;
 			}
-			json = json + "[";
-			json = json + "\"<a href='/Projet/ShowOtherProfil?id=" + perso.getId() + "'>" + us.getPrenom() + " " + us.getNom() + "</a>\",";
-			json = json + "\"" + us.getTitre() + "\",";
-			json = json + "\"" + us.getEmail() + "\",";
-			json = json + "\"" + perso.getType() + "\",";
-			json = json + "\"" + perso.getNom() + "\",";
-			json = json + "\"" + perso.getNiveau() + "\",";
-			json = json + "\"" + us.disponibilite() + "\",";
-			json = json + "\"" + us.getLieuDeTravail() + "\"";
-			json = json + "]";
-			i++;
 		}
 		json = json + "]}";
 		PrintWriter out = resp.getWriter();

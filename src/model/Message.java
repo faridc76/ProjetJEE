@@ -5,11 +5,24 @@ public class Message {
 	private Utilisateur recepteur;
 	private String message;
 	private String lu;
+	private String titre;
+	private String date;
+	private int id;
 
-	public Message (Utilisateur emetteur, Utilisateur recepteur, String message) {
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Message (Utilisateur emetteur, Utilisateur recepteur, String titre, String message) {
 		this.setEmetteur(emetteur);
 		this.setRecepteur(recepteur);
 		this.setMessage(message);
+		this.setTitre(titre);
+		setDate("0000-00-00");
 		setLu("Non lu");
 	}
 
@@ -47,6 +60,22 @@ public class Message {
 
 	public void setLu(String string) {
 		this.lu = string;
+	}
+
+	public String getTitre() {
+		return titre;
+	}
+
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 }

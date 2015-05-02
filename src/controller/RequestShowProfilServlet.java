@@ -37,9 +37,11 @@ public class RequestShowProfilServlet extends HttpServlet {
 			List<Personalite> userPersonalites = PersonaliteDB.getUserPersonalites(login);
 			for (Personalite p : userPersonalites) {
 				table = table + "<tr>";
-				table = table + "<th><a href=\"PersonaliteDetails?personalitesID=" + p.getId() + "\">" + p.getNom() + "</a></th>";
+				table = table + "<th id='perso_"+ p.getId() + "'>" + p.getNom() + "</th><br>";
 				table = table + "<th>" + p.getType() + "</th>";
 				table = table + "<th>" + p.getNiveau() + "</th>";
+				table = table + "<th><button class='glyphicon glyphicon-share-alt btn btn-primary'" 
+						+ "href='/Projet/ShowProfil' data-toggle='modal'></button></th>";
 				table = table + "</tr>";
 			}
 			session.setAttribute("userPersonalitesTable", table);

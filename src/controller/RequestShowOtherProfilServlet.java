@@ -37,34 +37,26 @@ public class RequestShowOtherProfilServlet extends HttpServlet {
 		HttpSession session = req.getSession(true);
 		int personaliteId = Integer.parseInt(req.getParameter("id"));
 		Utilisateur us;
-		String lien = "";
-		String profil = "";
 		try {
 			us = PersonaliteDB.getUserFromPersonalite(personaliteId);
 			session.setAttribute("otherUser", us);
-			if (us.getId() == ((Utilisateur)session.getAttribute("user")).getId()) {
-				lien = "profil.jsp";
-				profil = "userPersonalitesTable";
-			} else {
-				lien = "autre-profil.jsp";
-				profil = "otherUserPersonalitesTable";
-			}
-			
 			String table = "";
 			List<Personalite> userPersonalites = PersonaliteDB.getUserPersonalites(us.getEmail());
 			for (Personalite p : userPersonalites) {
 				table = table + "<tr>";
-				table = table + "<th><a href=\"PersonaliteDetails?personalitesID=" + p.getId() + "\">" + p.getNom() + "</a></th>";
+				table = table + "<th>" + p.getNom() + "</th>";
 				table = table + "<th>" + p.getType() + "</th>";
 				table = table + "<th>" + p.getNiveau() + "</th>";
+				table = table + "<th><textarea class='form-control' rows='2'>" + p.getDescription() + "</textarea></th>";
+				//table = table + "<th>" + p.getDescription() + "</th>";
 				table = table + "</tr>";
 			}
-			session.setAttribute(profil, table);	
+			session.setAttribute("otherUserPersonalitesTable", table);	
 		} catch (DatabaseAccessError e) {
 			session.setAttribute("error", e.toString());
 			e.printStackTrace();
 		} finally {
-			resp.sendRedirect(lien);
+			resp.sendRedirect("autre-profil.jsp");
 		}
 		
 	}
