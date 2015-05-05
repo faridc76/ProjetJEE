@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="model.db.MessageDB" %>
+<%@ page import="model.Utilisateur" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,6 +61,13 @@
 				</form>
 				<%
 					} else {
+						//L'enveloppe des nouveux messages est bleu si il y a un nouveau message, sinon elle est grise
+						if (MessageDB.nombreNonLu(((Utilisateur) session.getAttribute("user")).getId()) > 0) {
+							session.setAttribute("newMessage", "color:blue");
+							
+						} else {
+							session.setAttribute("newMessage", "color:grey");
+						}
 				%>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href=Message><span class="glyphicon glyphicon-envelope" style="<%=session.getAttribute("newMessage")%>"></span></a> </li>

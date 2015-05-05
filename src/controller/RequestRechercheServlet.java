@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import java.io.PrintWriter;
 import java.util.Collection;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,18 +43,22 @@ public class RequestRechercheServlet extends HttpServlet {
 				json = json + "[";
 				json = json + "\"<a href='/Projet/ShowOtherProfil?id=" + perso.getId() + "'>" + us.getPrenom() + " " + us.getNom() + "</a>\",";
 				json = json + "\"" + us.getTitre() + "\",";
-				json = json + "\"" + us.getEmail() + "\",";
 				json = json + "\"" + perso.getType() + "\",";
 				json = json + "\"" + perso.getNom() + "\",";
 				json = json + "\"" + perso.getNiveau() + "\",";
 				json = json + "\"" + us.disponibilite() + "\",";
-				json = json + "\"" + us.getLieuDeTravail() + "\"";
+				json = json + "\"" + us.getLieuDeTravail() + "\",";
+				json = json + "\"" + perso.getDescription() + "\"";
 				json = json + "]";
 				i++;
 			}
 		}
 		json = json + "]}";
 		PrintWriter out = resp.getWriter();
-		out.println(json);
+		//Nous convertissons la chaine de caract�re en UTF8 afin que le tableau de recherche comprenne bien
+		byte[] b = json.getBytes("Utf-8");
+		String s = new String(b);
+		//out.println(s);
+		out.println(json) ;
 	}
 }

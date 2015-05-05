@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java"%>
 <%@ page import="model.Utilisateur" %>
 <!-- header -->
 <jsp:include page="/utils/header.jsp">
@@ -35,7 +34,7 @@
 							name="titre" required>
 					</div>
 					<div class="form-group">
-						<label for="inputFirtName" class="control-label">PrÃ©nom</label> <input
+						<label for="inputFirtName" class="control-label">Prénom</label> <input
 							type="text" class="form-control" id="prenom" value="<%=((Utilisateur)session.getAttribute("user")).getPrenom() %>"
 							name="prenom" required>
 					</div>
@@ -44,17 +43,17 @@
 							passe</label> <input type="password" data-minlength="6"
 							class="form-control" id="password" placeholder="Mot de passe"
 							name="password" required> <span class="help-block">6
-							caractÃ¨res minimum</span>
+							caractères minimum</span>
 					</div>
 					<div class="form-group">
 						<label for="inputDateDeNaissance" class="control-label">Date
 							de naissance</label> <input value="<%=((Utilisateur)session.getAttribute("user")).getDate() %>" type="text"
-							class="form-control" id="datepicker" name="dateDeNaissance"
+							class="form-control" id="datepicker" name="dateDeNaissance"  readonly="true"
 							required>
 					</div>
 					<div class="form-group">
-						<label for="inputNumeroPortable" class="control-label">NumÃ©ro
-							de tÃ©lÃ©phone portable</label> <input type="text"
+						<label for="inputNumeroPortable" class="control-label">Numéro
+							de téléphone portable</label> <input type="text"
 							class="form-control bfh-phone" id="numeroPortable"
 							value="<%=((Utilisateur)session.getAttribute("user")).getNumPortable() %>" name="numeroPortable"
 							data-format="+33 d dd dd dd dd" required>
@@ -95,8 +94,8 @@
 							name="lieuDeTravail" required>
 					</div>
 					<div class="form-group">
-						<label for="inputNumeroFixe" class="control-label">NumÃ©ro
-							de tÃ©lÃ©phone fixe</label> <input type="text"
+						<label for="inputNumeroFixe" class="control-label">Numéro
+							de téléphone fixe</label> <input type="text"
 							class="form-control bfh-phone" id="numeroFixe"
 							value="<%=((Utilisateur)session.getAttribute("user")).getNumFix() %>" 
 							name="numeroFixe" data-format="+33 d dd dd dd dd" required>

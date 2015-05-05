@@ -30,18 +30,24 @@ public class RequestShowProfilServlet extends HttpServlet {
 		HttpSession session = req.getSession(true);
 		Utilisateur us = (Utilisateur) session.getAttribute("user");
 		String login = us.getEmail();
-		//On ajoute dans la session la disponibilité de l'utilisateur
+		//On ajoute dans la session la disponibilitï¿½ de l'utilisateur
 		session.setAttribute("checked", us.getDispo());
 		String table = "";
 		try {
 			List<Personalite> userPersonalites = PersonaliteDB.getUserPersonalites(login);
 			for (Personalite p : userPersonalites) {
 				table = table + "<tr>";
-				table = table + "<th id='perso_"+ p.getId() + "'>" + p.getNom() + "</th><br>";
-				table = table + "<th>" + p.getType() + "</th>";
-				table = table + "<th>" + p.getNiveau() + "</th>";
-				table = table + "<th><button class='glyphicon glyphicon-share-alt btn btn-primary'" 
-						+ "href='/Projet/ShowProfil' data-toggle='modal'></button></th>";
+				table = table + "<th id='nomPersonalite_"+ p.getId() + "'>" + p.getNom() + "</th><br>";
+				table = table + "<th id='typePersonalite_" + p.getId() + "'>" + p.getType() + "</th>";
+				table = table + "<th id='niveauPersonalite_"+ p.getId() + "'>" + p.getNiveau() + "</th>";
+				table = table + "<th id='descriptifPersonalite_"+ p.getId() + "'><textarea class='form-control' rows='2' readonly='true'>" + p.getDescription() + "</textarea></th>";
+				table = table + "<th><div class='btn-group'>"
+						+ "<button class='glyphicon glyphicon-share-alt btn btn-primary'" 
+						+ "href='#modifierPersonalite'  value='" + p.getId() + "' id='modifierPersonaliteButton' onClick='idValue(this.value)'"
+						+ "data-toggle='modal'></button>"
+						+ "<button href='#suppressionPersonalite' class='glyphicon glyphicon-remove btn btn-danger'"
+						+ "data-toggle='modal' value='" + p.getId() + "' onClick='idValue(this.value)'></button>"
+						+ "</div></th>";
 				table = table + "</tr>";
 			}
 			session.setAttribute("userPersonalitesTable", table);

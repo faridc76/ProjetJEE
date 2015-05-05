@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page language="java"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>ProjetJEE</title>
-<meta charset="utf-8">
+<meta charset="utf-8">	
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/Projet/dist/bootstrap/3.3.4/css/bootstrap.min.css">
 <link href="/Projet/dist/bootstrap-switch.css" rel="stylesheet">
@@ -19,7 +19,7 @@
 <script src="/Projet/dist/DataTables/media/js/jquery.dataTables.js"></script>
 <script src="/Projet/dist/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
 		$(document).ready(function() {
 			oTable = $('#example').dataTable( {
 				"bJQueryUI": true,
@@ -72,14 +72,14 @@
 					} else {
 				%>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href=messageBox.jsp><span class="glyphicon glyphicon-envelope" style="<%=session.getAttribute("newMessage")%>"></span></a> </li>
+					<li><a href=Message><span class="glyphicon glyphicon-envelope" style="<%=session.getAttribute("newMessage")%>"></span></a> </li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-expanded="false"><%=session.getAttribute("name")%><span
 							class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="/Projet/ShowProfil">Informations
 									sur le compte</a></li>
-							<li><a href="/Projet/LogoutServlet">DÃ©connexion</a></li>
+							<li><a href="/Projet/LogoutServlet">Déconnexion</a></li>
 						</ul></li>						
 				</ul>
 				<%
@@ -103,12 +103,12 @@
 		<tr>
 			<th width="15%">Nom</th>
 			<th width="15%">Titre</th>
-			<th width="15%">Email</th>
 			<th width="15%">Type</th>
-			<th width="15%">PersonalitÃ©</th>
+			<th width="15%">Personalité</th>
 			<th width="5%">Niveau</th>
-			<th width="10%">DisponibilitÃ©</th>
+			<th width="10%">Disponibilité</th>
 			<th width="10%">Site</th>
+			<th width="15%">Description</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -122,9 +122,9 @@
 			<th>Titre</th>
 			<th>Email</th>
 			<th>Type</th>
-			<th>PersonalitÃ©</th>
+			<th>Personalité</th>
 			<th>Niveau</th>
-			<th>DisponibilitÃ©</th>
+			<th>Disponibilité</th>
 			<th>Site</th>
 		</tr>
 	</tfoot>

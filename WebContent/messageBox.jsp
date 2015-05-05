@@ -8,7 +8,8 @@
 </jsp:include>
 <script type="text/javascript">
 function idValue (value) {
-	document.getElementById('formReponse').action = document.getElementById('formReponse').action + value;
+	document.getElementById('formReponse').action = "/Projet/SendMessage?id=" + value;
+	document.getElementById('formSuppression').action = "/Projet/DeleteMessage?id=" + value;
 }
 </script>
 
@@ -39,7 +40,7 @@ function idValue (value) {
 					</div>
 					<div class="modal-body">
 						<form data-toggle="validator" role="form" id="formReponse" 
-						action='/Projet/SendMessage?id=' method="POST">
+						 method="POST">
 							<div class="form-group text-left">
 								<label for="inputTitreMessage" class="control-label">Titre
 									du message</label> <input type="text" class="form-control"
@@ -57,6 +58,25 @@ function idValue (value) {
 								message
 							</button>
 						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="suppressionMessage">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">X</button>
+						<h4 class="modal-title text-left">Confirmation de la
+									suppression</h4>
+					</div>
+					<div class="modal-body">Voulez-vous supprimer le message?</div>
+					<div class="modal-footer">
+						<form id="formSuppression" method="POST">
+							<button type="submit" class="btn btn-danger">
+								<span class="glyphicon glyphicon-remove"></span> Confirmer
+							</button>
 						</form>
 					</div>
 				</div>
@@ -82,11 +102,6 @@ function idValue (value) {
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-	for (var name in document) {
-		//alert (name + " : " + document[name]);
-	}
-</script>
 <%
 	}
 %>

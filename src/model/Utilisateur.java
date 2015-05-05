@@ -27,7 +27,7 @@ public class Utilisateur {
 		poste = "";
 		numPortable = "";
 		numFix = "";
-		setDate("");
+		setDate("1980-01-01");
 		setDispo(0);
 		setId(0);
 	}

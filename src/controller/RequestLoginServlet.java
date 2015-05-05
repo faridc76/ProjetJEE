@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Utilisateur;
-import model.db.MessageDB;
 import model.db.UtilisateurDB;
 import model.db.exception.DatabaseAccessError;
 
@@ -33,21 +31,11 @@ public class RequestLoginServlet extends HttpServlet {
 				user = UtilisateurDB.getUtilisateur(login);
 				session.setAttribute("user", user);
 				session.setAttribute("name", user.getPrenom() + " " + user.getNom());
-				MessageDB.initializeUserMessageList(user);
-				if (MessageDB.isNonLu()) {
-					session.setAttribute("newMessage", "color:blue");
-				} else {
-					session.setAttribute("newMessage", "color:grey");
-				}
-				
 			} else {
 				session.setAttribute("error", "login ou mot de passe incorrect");
 			}
 		
 		} catch (DatabaseAccessError e) {
-			session.setAttribute("error", e.toString());
-			e.printStackTrace();
-		} catch (SQLException e) {
 			session.setAttribute("error", e.toString());
 			e.printStackTrace();
 		} finally {

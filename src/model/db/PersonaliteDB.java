@@ -21,7 +21,7 @@ public class PersonaliteDB {
 	private final static int PASSION_CODE = 2;
 	
 	private static Map<Integer, Personalite> personalites;
-	//Informations liées à la connexion
+	//Informations liï¿½es ï¿½ la connexion
 	private final static String login = "root";
 	private final static String pass = "";
 	private final static String url = "jdbc:mysql://localhost/reseauentreprise";
@@ -76,7 +76,7 @@ public class PersonaliteDB {
 	//Fonction qui retourne le type de personalite en fonction de son code
 	public static String getType(int type) {
 		if (type == COMPETENCE_CODE) {
-			return "Compétence";
+			return new String("CompÃ©tence");
 		} else if(type == PASSION_CODE) {
 			return "Passion";
 		}
@@ -85,16 +85,15 @@ public class PersonaliteDB {
 	
 	//Fonction qui retourne le code de personalite en fonction de son type
 	public static int getCode(String type) {
-		if (type == "Compétence") {
-			return COMPETENCE_CODE;
-			
-		} else if(type == "Passion") {
+		if (type.equals("CompÃ©tence")) {
+			return COMPETENCE_CODE;	
+		} else if(type.equals("Passion")) {
 			return PASSION_CODE;
 		}
 		return 0;
 	}
 
-	//Fonction qui retourne la list de toute les personalité d'un utilisateur rentré en parametre
+	//Fonction qui retourne la list de toute les personalitï¿½ d'un utilisateur rentrï¿½ en parametre
 	public static List<Personalite> getUserPersonalites(String user) throws DatabaseAccessError {
 		List<Personalite> l = new ArrayList<Personalite>();
 		for (Personalite p : personalites.values()) {
@@ -105,19 +104,21 @@ public class PersonaliteDB {
 		return l;
 	}
 	
-	//Fonction qui met à jour une personalité
+	//Fonction qui met ï¿½ jour une personalitï¿½
 	public static void updatePersonalite(Personalite p) throws SQLException {
 		con = DriverManager.getConnection(url, login, pass);
 		PreparedStatement ps =  con.prepareStatement(
 				"UPDATE personalite"
 				+ " SET prs_nom = ?, "
 				+ " prs_lvl = ?,"
-				+ " prs_desc = ? "
+				+ " prs_desc = ?, "
+				+ " prs_tps_id = ? "
 				+ " WHERE prs_id = ?");
 		ps.setString(1, p.getNom());
 		ps.setInt(2, p.getNiveau());
 		ps.setString(3, p.getDescription());
-		ps.setInt(4, p.getId());
+		ps.setInt(4, getCode(p.getType()));
+		ps.setInt(5, p.getId());
 		ps.execute();
 		ps.close();
 		initializePersonalitesList();

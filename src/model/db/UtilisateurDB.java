@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -88,8 +87,8 @@ public class UtilisateurDB {
 		con = DriverManager.getConnection(url, login, pass);
 		
 		PreparedStatement ps =  con.prepareStatement(
-				  "INSERT INTO utilisateur (usr_email, usr_nom, usr_prenom, usr_password, usr_titre, usr_lieutaf, usr_portable, usr_fixe, usr_dispo) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+				  "INSERT INTO utilisateur (usr_email, usr_nom, usr_prenom, usr_password, usr_titre, usr_lieutaf, usr_portable, usr_fixe, usr_dispo, usr_naissance) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		ps.setString(1, us.getEmail());
 		ps.setString(2, us.getNom());
 		ps.setString(3, us.getPrenom());
@@ -99,6 +98,7 @@ public class UtilisateurDB {
 		ps.setString(7, "");
 		ps.setString(8, "");
 		ps.setInt(9, 0);
+		ps.setString(10, us.getDate());
 		ps.execute();
 		ps.close();
 		initializeUsersList();

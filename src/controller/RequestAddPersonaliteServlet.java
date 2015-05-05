@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +25,8 @@ public class RequestAddPersonaliteServlet extends HttpServlet {
 		
 		HttpSession session = req.getSession(true);
 		String nom = req.getParameter("nom");
-		//On convertie le niveau de compétence en int
+		
+		//On convertie le niveau de compï¿½tence en int
 		int lvl = Integer.parseInt(req.getParameter("niveau"));
 		String desc = req.getParameter("descriptif");
 		//On convertie le int envoyer en parametre e String avec la methode getType de la classe PersonaliteDB

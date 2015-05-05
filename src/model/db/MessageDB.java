@@ -15,8 +15,7 @@ import model.db.exception.DatabaseAccessError;
 public class MessageDB {
 	//Liste des message pour un utilisateur
 	private static List<Message> userMessages;
-	private static boolean nonLu = false;
-	//Informations li�es � la connexion
+	//Informations li�es � la connexion
 	private final static String login = "root";
 	private final static String pass = "";
 	private final static String url = "jdbc:mysql://localhost/reseauentreprise";
@@ -56,28 +55,46 @@ public class MessageDB {
 			m.setId(rs.getInt("msg_id"));
 			m.setDate(rs.getString("msg_date"));
 			m.setLu(rs.getString("msg_statut"));
-			nonLu = nonLu & m.isLu();
 			userMessages.add(m);	
 		}
 		return userMessages;
 	}
 
 
-	public static boolean isNonLu() {
-		System.out.println(nonLu);
-		return nonLu;
+	public static int nombreNonLu(int idUsers)   throws SQLException {
+		int nombreNonLu = 0;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");//.newInstance();
+			try {
+				con = DriverManager.getConnection(url, login, pass);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch(ClassNotFoundException cnfe) {
+			System.err.println("Error loading : " + cnfe);
+		}
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		ps =  con.prepareStatement("SELECT COUNT(*) FROM message WHERE msg_rcp_id = " + idUsers + " and msg_statut = 'Non lu'" );
+		rs = ps.executeQuery();
+		if (rs.next()) {
+		
+			nombreNonLu = rs.getInt(1);	
+		}
+		return nombreNonLu;
 	}
 
 
 	public static void sendMessage(Message m) throws SQLException {
 		con = DriverManager.getConnection(url, login, pass);
 		PreparedStatement ps =  con.prepareStatement(
-				  "INSERT INTO message (msg_emt_id, msg_rcp_id, msg_date, msg_titre, msg_contenu) "
-				+ "VALUES (?, ?, CURRENT_DATE(), ?, ?)");
+				  "INSERT INTO message (msg_emt_id, msg_rcp_id, msg_date, msg_titre, msg_contenu, msg_statut) "
+				+ "VALUES (?, ?, CURRENT_DATE(), ?, ?, ?)");
 		ps.setInt(1, m.getEmetteur().getId());
 		ps.setInt(2, m.getRecepteur().getId());
 		ps.setString(3, m.getTitre());
 		ps.setString(4, m.getMessage());
+		ps.setString(5, m.getLu());
 		ps.execute();
 		ps.close();
 	}		
@@ -93,9 +110,13 @@ public class MessageDB {
 	
 	public static void updateStatut(int idMessage, String statut, Utilisateur User) throws SQLException {
 		con = DriverManager.getConnection(url, login, pass);
-		PreparedStatement ps =  con.prepareStatement("UPDATE message SET msg_statut = ? WHERE msg_id = ?");
+		PreparedStatement ps =  con.prepareStatement("UPDATE message SET msg_statut = ? WHERE msg_id = ? AND msg_statut != ?");
+		System.out.println("statut = " + statut);
+		System.out.println("id = " + idMessage);
 		ps.setString(1, statut);
 		ps.setInt(2, idMessage);
+		//On ne fait pas évoluer le statut d'un message au quel on a déja répondu
+		ps.setString(3, "Répondu");
 		ps.execute();
 		ps.close();
 		initializeUserMessageList(User);

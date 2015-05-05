@@ -1,9 +1,7 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.util.GregorianCalendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,9 +35,9 @@ public class RequestSaveUpdateServlet extends HttpServlet {
 			if (oldEmail.equals(newEmail) || free) {
 				us.setEmail(newEmail);
 				UtilisateurDB.initializeUsersList();
-				session.setAttribute("compte", "Le compte a bien ÈtÈ mis ‡ jour");
+				session.setAttribute("compte", "Le compte a bien √©t√© mis √† jour");
 			} else {
-				session.setAttribute("error", "Impossible de modifier l'email car un compte existe dÈj‡ avec ce mail");
+				session.setAttribute("error", "Impossible de modifier l'email car un compte existe d√©j√† avec ce mail");
 			}
 			
 			us.setNom(req.getParameter("nom"));

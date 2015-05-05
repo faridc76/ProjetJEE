@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,12 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Message;
-import model.Personalite;
 import model.Utilisateur;
 import model.db.MessageDB;
-import model.db.PersonaliteDB;
-import model.db.UtilisateurDB;
-import model.db.exception.DatabaseAccessError;
 
 @WebServlet("/SendMessage")
 public class RequestSendMessageServlet extends HttpServlet {
@@ -36,23 +31,23 @@ public class RequestSendMessageServlet extends HttpServlet {
 		Utilisateur otherUser = (Utilisateur) session.getAttribute("otherUser");
 		String lien = "/Projet/ShowProfil";
 		try {
-			//si otherUser == null cela veut dire que ce n'est pas un nouveau message mais une réponse
+			//si otherUser == null cela veut dire que ce n'est pas un nouveau message mais une rï¿½ponse
 			if(otherUser == null) {
 				lien = "/Projet/Message";
 				int idMessage = Integer.parseInt(req.getParameter("id"));
-				//On récupère le message auquel nous allons répondre
+				//On rï¿½cupï¿½re le message auquel nous allons rï¿½pondre
 				Message receptMessage = MessageDB.getMessageFromId(idMessage);
-				//Nous mettons dans otherUser la personne qui nous a écrit (c'est à dire celle à qui nous allons répondre);
+				//Nous mettons dans otherUser la personne qui nous a ï¿½crit (c'est ï¿½ dire celle ï¿½ qui nous allons rï¿½pondre);
 				otherUser = receptMessage.getEmetteur();
-				//On met le message comme répondu
-				MessageDB.updateStatut(idMessage, "Répondu", us);
+				//On met le message comme rï¿½pondu
+				MessageDB.updateStatut(idMessage, "RÃ©pondu", us);
 			}
-			//On crée un objet avec le nouveau message
+			//On crï¿½e un objet avec le nouveau message
 			Message m = new Message(us, otherUser, titre, message);
 			//On envoi le message 
 			MessageDB.sendMessage(m);
 			
-			session.setAttribute("compte", "Le message a bien été envoyé à " + otherUser.getPrenom() + " " + otherUser.getNom());
+			session.setAttribute("compte", "Le message a bien Ã©tÃ© envoyÃ© Ã  " + otherUser.getPrenom() + " " + otherUser.getNom());
 		} catch (SQLException | NumberFormatException e) {
 			session.setAttribute("error", e.toString());
 			e.printStackTrace();

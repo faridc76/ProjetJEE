@@ -10,18 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-
-
-
-
-
-
-
 import model.Personalite;
 import model.Utilisateur;
 import model.db.PersonaliteDB;
-import model.db.UtilisateurDB;
 import model.db.exception.DatabaseAccessError;
 
 
@@ -47,8 +38,7 @@ public class RequestShowOtherProfilServlet extends HttpServlet {
 				table = table + "<th>" + p.getNom() + "</th>";
 				table = table + "<th>" + p.getType() + "</th>";
 				table = table + "<th>" + p.getNiveau() + "</th>";
-				table = table + "<th><textarea class='form-control' rows='2'>" + p.getDescription() + "</textarea></th>";
-				//table = table + "<th>" + p.getDescription() + "</th>";
+				table = table + "<th><textarea class='form-control' rows='2' readonly='true'>" + p.getDescription() + "</textarea></th>";
 				table = table + "</tr>";
 			}
 			session.setAttribute("otherUserPersonalitesTable", table);	

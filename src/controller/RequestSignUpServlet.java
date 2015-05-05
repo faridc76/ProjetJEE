@@ -34,9 +34,9 @@ public class RequestSignUpServlet extends HttpServlet {
 			if (free) {
 				Utilisateur us = new Utilisateur(nom, prenom, email, password);
 				UtilisateurDB.AddUtilisateur(us);
-				session.setAttribute("compte", "Le compte a bien ÈtÈ crÈe, merci de vous connecter");
+				session.setAttribute("compte", "Le compte a bien √©t√© cr√©√©, merci de vous connecter");
 			} else {
-				session.setAttribute("error", "Il y a dÈj‡ un compte avec cet E-mail");
+				session.setAttribute("error", "Il y a d√©j√† un compte avec cet E-mail");
 			}
 		} catch (SQLException e) {
 			session.setAttribute("error", e.toString());
