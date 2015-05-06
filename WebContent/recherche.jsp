@@ -3,7 +3,6 @@
 <html lang="en">
 <head>
 <title>ProjetJEE</title>
-<meta charset="utf-8">	
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/Projet/dist/bootstrap/3.3.4/css/bootstrap.min.css">
 <link href="/Projet/dist/bootstrap-switch.css" rel="stylesheet">
@@ -24,7 +23,8 @@
 			oTable = $('#example').dataTable( {
 				"bJQueryUI": true,
 				"sPaginationType": "full_numbers",
-			    "sAjaxSource": "/Projet/Recherche",
+			    //"sAjaxSource": "/Projet/Recherche",
+			     "aaData": <%=session.getAttribute("json") %>,
 				"oLanguage": {
 					"sUrl": "dist/DataTables/langue/langue_FR.txt"
 				}
@@ -98,7 +98,7 @@
 	} else {
 %>
 <!-- container -->
-<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+<table class="display" id="example">
 	<thead>
 		<tr>
 			<th width="15%">Nom</th>
@@ -120,12 +120,12 @@
 		<tr>
 			<th>Nom</th>
 			<th>Titre</th>
-			<th>Email</th>
 			<th>Type</th>
 			<th>Personalité</th>
 			<th>Niveau</th>
 			<th>Disponibilité</th>
 			<th>Site</th>
+			<th>Description</th>
 		</tr>
 	</tfoot>
 </table>

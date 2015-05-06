@@ -4,6 +4,7 @@ import java.io.IOException;
 
 
 import java.io.PrintWriter;
+import java.nio.charset.Charset;
 import java.util.Collection;
 
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import sun.awt.CharsetString;
 import model.Personalite;
 import model.Utilisateur;
 import model.db.PersonaliteDB;
@@ -28,7 +30,7 @@ public class RequestRechercheServlet extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		String json = "{\"sEcho\":\"1\",\"iTotalRecords\":\"1\",\"iTotalDisplayRecords\":\"1\",\"aaData\":[";
+		String json="[";
 		Collection<Personalite> personalites = PersonaliteDB.getPersonalites();
 		//Un compteur pour savoir quand mettre une virgule car la forme doit etre {[ [], []... ]}
 		int i = 0;
@@ -53,12 +55,9 @@ public class RequestRechercheServlet extends HttpServlet {
 				i++;
 			}
 		}
-		json = json + "]}";
-		PrintWriter out = resp.getWriter();
-		//Nous convertissons la chaine de caract�re en UTF8 afin que le tableau de recherche comprenne bien
-		byte[] b = json.getBytes("Utf-8");
-		String s = new String(b);
-		//out.println(s);
-		out.println(json) ;
+		json = json + "]";
+		session.setAttribute("json", json);
+		resp.sendRedirect("/Projet/recherche.jsp");
+
 	}
 }
