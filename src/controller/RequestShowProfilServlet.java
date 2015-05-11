@@ -17,7 +17,13 @@ import model.Personalite;
 import model.Utilisateur;
 import model.db.PersonaliteDB;
 import model.db.exception.DatabaseAccessError;
-
+/**
+ * 
+ * @author alexandre.deneuve and farid.chouakria
+ * Version 1.0
+ * date: 2015-05-11 
+ *
+ */
 @WebServlet("/ShowProfil")
 public class RequestShowProfilServlet extends HttpServlet {
 
@@ -35,6 +41,7 @@ public class RequestShowProfilServlet extends HttpServlet {
 		String table = "";
 		try {
 			List<Personalite> userPersonalites = PersonaliteDB.getUserPersonalites(login);
+			//On crée un tableau html avec toute les info sur les personalité de lutilisateur avec deux boutons, modification et suppression
 			for (Personalite p : userPersonalites) {
 				table = table + "<tr>";
 				table = table + "<th id='nomPersonalite_"+ p.getId() + "'>" + p.getNom() + "</th><br>";

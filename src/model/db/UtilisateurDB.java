@@ -10,11 +10,17 @@ import java.util.Map;
 
 import model.Utilisateur;
 import model.db.exception.DatabaseAccessError;
-
+/**
+ * 
+ * @author alexandre.deneuve and farid.chouakria
+ * Version 1.0
+ * date: 2015-05-11 
+ *
+ */
 public class UtilisateurDB {
 	//Liste des utilisateurs
 	private static Map<String,Utilisateur> users;
-	//Informations liées à la connexion
+	//Informations liï¿½es ï¿½ la connexion
 	private final static String login = "root";
 	private final static String pass = "";
 	private final static String url = "jdbc:mysql://localhost/reseauentreprise";
@@ -29,7 +35,7 @@ public class UtilisateurDB {
 		}
 	}
 	
-	//Fonction qui réinitialise la liste avec tous les utilisateurs present dans la base de données
+	//Fonction qui rï¿½initialise la liste avec tous les utilisateurs present dans la base de donnï¿½es
 	public static void initializeUsersList() throws SQLException {
 		users = new LinkedHashMap<String, Utilisateur>();
 		try {
@@ -54,7 +60,7 @@ public class UtilisateurDB {
 			u.setNumFix(rs.getString("usr_fixe"));
 			u.setNumPortable(rs.getString("usr_portable"));
 			u.setDispo(rs.getInt("usr_dispo"));
-			//Dans la base de données nous avons les dates sous la formes AAAA-MM-JJ 
+			//Dans la base de donnï¿½es nous avons les dates sous la formes AAAA-MM-JJ 
 			//et nous les convertissons pour les avoirs de la forme MM/JJ/AAAA
 			String date =rs.getString(11);
 			u.setDate(date);
@@ -140,6 +146,8 @@ public class UtilisateurDB {
 		con = DriverManager.getConnection(url, login, pass);
 		//On suprime tous ce qui concerne les personalites de l'utilisateurs
 		PersonaliteDB.supFromUser(id);
+		//On supprime tous les messages envoyÃ© et recu par l'utilisateur
+		MessageDB.supFromUser(id);
 		//On supprime l'utilisateur de la liste
 		PreparedStatement ps =  con.prepareStatement("DELETE FROM utilisateur WHERE usr_id = ?");
 		ps.setInt(1, id);

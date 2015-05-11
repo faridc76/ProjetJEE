@@ -13,7 +13,13 @@ import javax.servlet.http.HttpSession;
 import model.Message;
 import model.Utilisateur;
 import model.db.MessageDB;
-
+/**
+ * 
+ * @author alexandre.deneuve and farid.chouakria
+ * Version 1.0
+ * date: 2015-05-11 
+ *
+ */
 @WebServlet("/SendMessage")
 public class RequestSendMessageServlet extends HttpServlet {
 
@@ -24,6 +30,7 @@ public class RequestSendMessageServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		HttpSession session = req.getSession(true);
+		//On recupere les élements du message
 		String titre = req.getParameter("titreMessage");
 		String message = req.getParameter("inputMessage");
 		
@@ -31,7 +38,7 @@ public class RequestSendMessageServlet extends HttpServlet {
 		Utilisateur otherUser = (Utilisateur) session.getAttribute("otherUser");
 		String lien = "/Projet/ShowProfil";
 		try {
-			//si otherUser == null cela veut dire que ce n'est pas un nouveau message mais une r�ponse
+			//si otherUser == null cela veut dire que ce n'est pas un nouveau message mais une réponse
 			if(otherUser == null) {
 				lien = "/Projet/Message";
 				int idMessage = Integer.parseInt(req.getParameter("id"));

@@ -12,7 +12,13 @@ import javax.servlet.http.HttpSession;
 
 import model.Utilisateur;
 import model.db.UtilisateurDB;
-
+/**
+ * 
+ * @author alexandre.deneuve and farid.chouakria
+ * Version 1.0
+ * date: 2015-05-11 
+ *
+ */
 @WebServlet("/DeleteUser")
 public class RequestDeleteUserRequest extends HttpServlet {
 
@@ -23,16 +29,20 @@ public class RequestDeleteUserRequest extends HttpServlet {
 			throws ServletException, IOException {
 		
 		HttpSession session = req.getSession(true);
+		
+		//On recupere l'utilisateur appartir de la session
 		Utilisateur us = (Utilisateur) session.getAttribute("user");
+		
 		try {
-			System.out.println("id : " + us.getId());
+			//On supprime l'utilisateur
 			UtilisateurDB.supUtilisateur(us.getId());
+			//On invalide la session
 			session.invalidate();
 		} catch (SQLException e) {
 			session.setAttribute("error", e.toString());
 			e.printStackTrace();
 		} finally {
-			// redirecton
+			// redirection vers l'index
 			resp.sendRedirect("index.jsp");
 		}
 	}

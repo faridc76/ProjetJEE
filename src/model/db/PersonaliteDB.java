@@ -14,7 +14,13 @@ import java.util.Map;
 import model.Personalite;
 import model.Utilisateur;
 import model.db.exception.DatabaseAccessError;
-
+/**
+ * 
+ * @author alexandre.deneuve and farid.chouakria
+ * Version 1.0
+ * date: 2015-05-11 
+ *
+ */
 public class PersonaliteDB {
 	//Liste des utilisateurs
 	private final static int COMPETENCE_CODE = 1;

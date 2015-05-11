@@ -46,7 +46,7 @@ function idValue(value) {
 		<section class="col-lg-offset-1 col-lg-2">
 			<div class="row">
 				<p></p>
-				<a href=recherche.jsp><button type="button"
+				<a href="Recherche"><button type="button"
 						class="btn btn-block btn-primary">Rechercher</button></a>
 				<p></p>
 				<p></p>
@@ -143,8 +143,7 @@ function idValue(value) {
 					<div class="modal-footer">
 						<form id="supPersonaliteForm" method="POST">
 							<button type="submit" class="btn btn-danger">
-								<span class="glyphicon glyphicon-remove"></span> Confirmer la
-								suppression de la personalité
+								<span class="glyphicon glyphicon-remove"></span> Confirmer
 							</button>
 						</form>
 					</div>

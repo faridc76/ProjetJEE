@@ -28,7 +28,7 @@ function idValue (value) {
 			<h3>Boite de réception</h3>
 		</div>
 		<div class="col-lg-offset-1 col-lg-2">
-			<a href=recherche.jsp><button class="btn btn-default">Rechercher</button></a>
+			<a href="Recherche"><button class="btn btn-default">Rechercher</button></a>
 			<p></p>
 		</div>
 		<div class="modal fade" id="envoyerMessage">

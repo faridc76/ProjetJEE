@@ -32,7 +32,7 @@
 		<section class="col-lg-offset-1 col-lg-2">
 			<div class="row">
 				<p></p>
-				<a href=recherche.jsp><button type="button"
+				<a href="Recherche"><button type="button"
 						class="btn btn-block btn-primary">Retour à la recherche</button></a>
 				<p></p>
 				

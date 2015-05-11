@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java"%>
 
 <!-- header -->
 <jsp:include page="/utils/header.jsp">
@@ -31,9 +30,9 @@
 						placeholder="Entrez votre nom" name="nom" required>
 				</div>
 				<div class="form-group">
-					<label for="inputFirtName" class="control-label">PrÃ©nom</label> <input
+					<label for="inputFirtName" class="control-label">Prénom</label> <input
 						type="text" class="form-control" id="prenom"
-						placeholder="Entrez votre prÃ©nom" name="prenom" required>
+						placeholder="Entrez votre prénom" name="prenom" required>
 				</div>
 				<div class="form-group">
 					<label for="inputEmail" class="control-label">Email</label> <input
@@ -46,7 +45,7 @@
 							passe</label> <input type="password" data-minlength="6"
 							class="form-control" id="password"
 							placeholder="Entrez votre mot de passe" name="password" required>
-						<span class="help-block">6 caractÃ¨res minimum</span>
+						<span class="help-block">6 caractères minimum</span>
 					</div>
 					<div class="form-group">
 						<label for="inputPasswordConfirm" class="control-label">Confirmation

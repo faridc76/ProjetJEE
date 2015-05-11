@@ -15,7 +15,13 @@ import model.Utilisateur;
 import model.db.PersonaliteDB;
 import model.db.exception.DatabaseAccessError;
 
-
+/**
+ * 
+ * @author alexandre.deneuve and farid.chouakria
+ * Version 1.0
+ * date: 2015-05-11 
+ *
+ */
 @WebServlet("/ShowOtherProfil")
 public class RequestShowOtherProfilServlet extends HttpServlet {
 
@@ -26,11 +32,16 @@ public class RequestShowOtherProfilServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		HttpSession session = req.getSession(true);
+		//On recupere l'id de la personalité
 		int personaliteId = Integer.parseInt(req.getParameter("id"));
 		Utilisateur us;
 		try {
+			//On recupere l'utilisateur de la personalité
 			us = PersonaliteDB.getUserFromPersonalite(personaliteId);
+			//On indique dans la session quelle est l'utilisateur du profil visitéé
 			session.setAttribute("otherUser", us);
+			//On crée un objet html avec les informations ur chaque personalité de lutilisateur
+			//Objet qui sera retrouvé dans un jsp
 			String table = "";
 			List<Personalite> userPersonalites = PersonaliteDB.getUserPersonalites(us.getEmail());
 			for (Personalite p : userPersonalites) {
@@ -46,6 +57,7 @@ public class RequestShowOtherProfilServlet extends HttpServlet {
 			session.setAttribute("error", e.toString());
 			e.printStackTrace();
 		} finally {
+			//On redirige
 			resp.sendRedirect("autre-profil.jsp");
 		}
 		

@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import model.Personalite;
 import model.Utilisateur;
 import model.db.PersonaliteDB;
-
 /**
  * 
  * @author alexandre.deneuve and farid.chouakria
@@ -21,38 +20,41 @@ import model.db.PersonaliteDB;
  * date: 2015-05-11 
  *
  */
-
-@WebServlet("/AddPersonalite")
-public class RequestAddPersonaliteServlet extends HttpServlet {
+@WebServlet("/UpdatePersonalite")
+public class RequestUpdatePersonaliteServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 3311297485258766639L;
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
 		HttpSession session = req.getSession(true);
-		String nom = req.getParameter("nom");
-		
-		//On convertie le niveau de compétence en int
-		int lvl = Integer.parseInt(req.getParameter("niveau"));
-		String desc = req.getParameter("descriptif");
-		//On convertie le int envoyer en parametre e String avec la methode getType de la classe PersonaliteDB
-		String type = PersonaliteDB.getType(Integer.parseInt(req.getParameter("type")));
+		//On recupere l'utilisateur
 		Utilisateur us = (Utilisateur) session.getAttribute("user");
-		//On crée un objet personalité appartir des informations dans le formulaire
+		//on recupere l'id de la personalite qu'on a convertie en int
+		int idPersonalite = Integer.parseInt(req.getParameter("id"));
+		//On recupere le nouveau nom
+		String nom = req.getParameter("nomPersonalite");
+		//On convertie le niveau de compétence en int
+		int lvl = Integer.parseInt(req.getParameter("niveauPersonalite"));
+		//La desciption
+		String desc = req.getParameter("descriptifPersonalite");
+		//Le type, si c'est une compétence ou une personalité
+		String type = req.getParameter("typePersonalite");
+		//On crée un objet avec la personalite
 		Personalite p = new Personalite(nom, lvl, type, desc, us);
+		//On indique l'id de la personalité
+		p.setId(idPersonalite);
 		try {
-			//On ajoute la personalité dans la base de données 
-			PersonaliteDB.addPersonalite(p);
+			//On met à jour les informations
+			PersonaliteDB.updatePersonalite(p);
 		} catch (SQLException e) {
 			session.setAttribute("error", e.toString());
 			e.printStackTrace();
 		} finally {
-			// redirection vers le servlet ShowProfil
+			// redirection
 			resp.sendRedirect("/Projet/ShowProfil");
 		}
-		
 	}
 
 }

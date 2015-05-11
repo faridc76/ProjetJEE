@@ -1,5 +1,13 @@
 package model;
 
+/**
+ * 
+ * @author alexandre.deneuve and farid.chouakria
+ * Version 1.0
+ * date: 2015-05-11 
+ *
+ */
+
 public class Message {
 	private Utilisateur emetteur;
 	private Utilisateur recepteur;
@@ -9,14 +17,13 @@ public class Message {
 	private String date;
 	private int id;
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	/**
+	 * 
+	 * @param emetteur = emetteur du message
+	 * @param recepteur = le destinataire
+	 * @param titre = le titre du message
+	 * @param message = le contenu
+	 */
 	public Message (Utilisateur emetteur, Utilisateur recepteur, String titre, String message) {
 		this.setEmetteur(emetteur);
 		this.setRecepteur(recepteur);
@@ -26,6 +33,14 @@ public class Message {
 		setLu("Non lu");
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public Utilisateur getEmetteur() {
 		return emetteur;
 	}

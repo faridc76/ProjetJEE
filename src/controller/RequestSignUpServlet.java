@@ -12,7 +12,13 @@ import javax.servlet.http.HttpSession;
 
 import model.Utilisateur;
 import model.db.UtilisateurDB;
-
+/**
+ * 
+ * @author alexandre.deneuve and farid.chouakria
+ * Version 1.0
+ * date: 2015-05-11 
+ *
+ */
 @WebServlet("/SignUpServlet")
 public class RequestSignUpServlet extends HttpServlet {
 
@@ -25,6 +31,7 @@ public class RequestSignUpServlet extends HttpServlet {
 		//que le mail est bien de la forme aaaa@bbbb.com
 		boolean free = false;
 		HttpSession session = req.getSession(true);
+		//On recupere le nom prenom email password
 		String nom = req.getParameter("nom");
 		String prenom = req.getParameter("prenom");
 		String email = req.getParameter("email");
@@ -32,7 +39,9 @@ public class RequestSignUpServlet extends HttpServlet {
 		try {
 			free = UtilisateurDB.loginIsFree(email);
 			if (free) {
+				//On crée un objet utilisateur
 				Utilisateur us = new Utilisateur(nom, prenom, email, password);
+				//On l'ajoute a la base de donnée
 				UtilisateurDB.AddUtilisateur(us);
 				session.setAttribute("compte", "Le compte a bien été créé, merci de vous connecter");
 			} else {

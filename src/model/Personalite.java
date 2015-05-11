@@ -1,5 +1,11 @@
 package model;
-
+/**
+ * 
+ * @author alexandre.deneuve and farid.chouakria
+ * Version 1.0
+ * date: 2015-05-11 
+ *
+ */
 public class Personalite {
 	private String nom;
 	private int niveau;
@@ -8,6 +14,14 @@ public class Personalite {
 	private Utilisateur user;
 	private int id;
 	
+	/**
+	 * 
+	 * @param nom = le nom 
+	 * @param niveau = le niveau (entre 0 et 10)
+	 * @param type = si compétence ou passion
+	 * @param description = la description de la personalité
+	 * @param user = l'utilisateur a qui elle appartien
+	 */
 	public Personalite(String nom, int niveau, String type, String description, Utilisateur user) {
 		this.setNom(nom);
 		this.setNiveau(niveau);

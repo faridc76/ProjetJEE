@@ -18,7 +18,7 @@
 		<a href="creer-compte.jsp"><button class="btn btn-lg btn-primary">Créer compte</button></a>
 	</p>
 	<% } else { %>
-		<a class="btn btn-lg btn-primary" href="/Projet/recherche.jsp">Cliquez ici pour commencer une recherche</a>
+		<a class="btn btn-lg btn-primary" href="Recherche">Cliquez ici pour commencer une recherche</a>
 	<% } %>
 	
 </div>

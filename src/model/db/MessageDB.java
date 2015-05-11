@@ -11,7 +11,13 @@ import java.util.List;
 import model.Message;
 import model.Utilisateur;
 import model.db.exception.DatabaseAccessError;
-
+/**
+ * 
+ * @author alexandre.deneuve and farid.chouakria
+ * Version 1.0
+ * date: 2015-05-11 
+ *
+ */
 public class MessageDB {
 	//Liste des message pour un utilisateur
 	private static List<Message> userMessages;
@@ -154,6 +160,16 @@ public class MessageDB {
 			m.setLu(rs.getString("msg_statut"));	
 		}
 		return m;
+	}
+
+
+	public static void supFromUser(int id) throws SQLException {
+		con = DriverManager.getConnection(url, login, pass);
+		PreparedStatement ps =  con.prepareStatement("DELETE FROM message WHERE msg_emt_id = ? OR msg_rcp_id = ?");
+		ps.setInt(1, id);
+		ps.setInt(2, id);
+		ps.execute();
+		ps.close();
 	}
 	
 	

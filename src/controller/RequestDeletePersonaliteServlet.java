@@ -10,10 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Personalite;
-import model.Utilisateur;
 import model.db.PersonaliteDB;
-
 /**
  * 
  * @author alexandre.deneuve and farid.chouakria
@@ -21,38 +18,28 @@ import model.db.PersonaliteDB;
  * date: 2015-05-11 
  *
  */
-
-@WebServlet("/AddPersonalite")
-public class RequestAddPersonaliteServlet extends HttpServlet {
+@WebServlet("/DeletePersonalite")
+public class RequestDeletePersonaliteServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 3311297485258766639L;
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
 		HttpSession session = req.getSession(true);
-		String nom = req.getParameter("nom");
+		//On recupere l'id de la personalité appartir des parametres
+		int idPersonalite = Integer.parseInt(req.getParameter("id"));
 		
-		//On convertie le niveau de compétence en int
-		int lvl = Integer.parseInt(req.getParameter("niveau"));
-		String desc = req.getParameter("descriptif");
-		//On convertie le int envoyer en parametre e String avec la methode getType de la classe PersonaliteDB
-		String type = PersonaliteDB.getType(Integer.parseInt(req.getParameter("type")));
-		Utilisateur us = (Utilisateur) session.getAttribute("user");
-		//On crée un objet personalité appartir des informations dans le formulaire
-		Personalite p = new Personalite(nom, lvl, type, desc, us);
 		try {
-			//On ajoute la personalité dans la base de données 
-			PersonaliteDB.addPersonalite(p);
+			//On supprime la personalité
+			PersonaliteDB.supPersonalite(idPersonalite);
 		} catch (SQLException e) {
 			session.setAttribute("error", e.toString());
 			e.printStackTrace();
 		} finally {
-			// redirection vers le servlet ShowProfil
+			// redirection vers ShowProfil
 			resp.sendRedirect("/Projet/ShowProfil");
 		}
-		
 	}
 
 }

@@ -12,7 +12,13 @@ import javax.servlet.http.HttpSession;
 
 import model.Utilisateur;
 import model.db.UtilisateurDB;
-
+/**
+ * 
+ * @author alexandre.deneuve and farid.chouakria
+ * Version 1.0
+ * date: 2015-05-11 
+ *
+ */
 @WebServlet("/SaveUpdate")
 public class RequestSaveUpdateServlet extends HttpServlet {
 

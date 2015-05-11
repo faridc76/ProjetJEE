@@ -1,6 +1,12 @@
 package model;
 
-
+/**
+ * 
+ * @author alexandre.deneuve and farid.chouakria
+ * Version 1.0
+ * date: 2015-05-11 
+ *
+ */
 public class Utilisateur {
 
 	private String nom;
@@ -16,7 +22,14 @@ public class Utilisateur {
 	private String numFix;
 	private String date;
 	private int dispo;
-
+	
+	/**
+	 * 
+	 * @param nom = nom de l'utilisateur
+	 * @param prenom = prenom de lutilisateur
+	 * @param email = l'email de l'utilisateur
+	 * @param password = le mot de passe de l'utilisateur
+	 */
 	public Utilisateur(String nom, String prenom, String email, String password) {
 		this.nom = nom;
 		this.prenom = prenom;
@@ -137,7 +150,7 @@ public class Utilisateur {
         case 2:
             return "Indisponible";
 		}
-		return "Non indiqué";
+		return "Non indiquï¿½";
 	}
 
 
